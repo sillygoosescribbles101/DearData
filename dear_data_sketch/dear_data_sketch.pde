@@ -1,27 +1,21 @@
-String[] data;
 boolean shake = true;
 
-void setup () {
+void setup() {
   size(400, 400);
-  data = loadStrings("mydata.txt");
 }
 
-void draw () {
-  background (255);
-  stroke(200);
-  line(120, 80, 340, 300);
+void draw() {
+  background(255);
 
-  float xPos = 40;
-  float yPos = 50;
-  float sSize = 90;
+  stroke(0);
+  strokeWeight(2);
 
-  for (int i=0; i<data.length; i++) {
-    line (xPos, + random (-10, 10), yPos         + random(-10, 10),
-      xPos + sSize + random(-10, 10), yPos         + random(-10, 10),
-      xPos + sSize + random(-10, 10), yPos + sSize + random(-10, 10),
-      xPos         + random(-10, 10), yPos + sSize + random(-10, 10));
+  float jitter = shake ? 10 : 0;
 
-    xPos = xPos + 100;
-    text(data[i], 10, 10+(i*10));
-  }
+  line(
+    50 + random(-jitter, jitter),
+    200 + random(-jitter, jitter),
+    350 + random(-jitter, jitter),
+    200 + random(-jitter, jitter)
+  );
 }
