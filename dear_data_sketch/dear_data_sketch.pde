@@ -1,11 +1,16 @@
 boolean shake = true;
+Pshape drawing;
 
 void setup() {
   size(400, 400);
+  //Load the drawing file to the data folder
+  drawing  = loadShape("drawing.svg");
 }
 
 void draw() {
   background(255);
+  
+  shape(drawing, 50, 50);
 
   stroke(0);
   strokeWeight(2);
