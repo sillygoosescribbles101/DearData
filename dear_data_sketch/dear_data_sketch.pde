@@ -1,10 +1,10 @@
 boolean shake = true;
-Pshape drawing;
+PShape drawing;
 
 void setup() {
   size(400, 400);
   //Load the drawing file to the data folder
-  drawing  = loadShape("drawing.svg");
+  drawing  = loadShape("IMG-1113.svg");
 }
 
 void draw() {
@@ -17,10 +17,13 @@ void draw() {
 
   float jitter = shake ? 10 : 0;
 
-  line(
-    50 + random(-jitter, jitter),
-    200 + random(-jitter, jitter),
-    350 + random(-jitter, jitter),
-    200 + random(-jitter, jitter)
-  );
+  float x = random(-jitter, jitter);
+  float y = random(-jitter,jitter);
+  
+  pushMatrix();
+  translate(50 + x, 50 + y);
+  
+  shape(drawing, 0,0);
+  
+  popMatrix();
 }
