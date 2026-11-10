@@ -1,29 +1,48 @@
 boolean shake = true;
-PShape drawing;
+float jitter = 10;
+float speed = 1;
+float strokeWidth = 2;
+color lineColor;
+float x;
+float y;
 
 void setup() {
   size(400, 400);
-  //Load the drawing file to the data folder
-  drawing  = loadShape("IMG-1113.svg");
+  
+  x = width / 2;
+  y = height / 2;
+
+  lineColor = color(0);
+
 }
 
 void draw() {
   background(255);
-  
-  shape(drawing, 50, 50);
 
-  stroke(0);
-  strokeWeight(2);
+  float amount = shake ? jitter : 0;
 
-  float jitter = shake ? 10 : 0;
+  float x = random(-amount, amount);
+  float y = random(-amount, amount);
 
-  float x = random(-jitter, jitter);
-  float y = random(-jitter,jitter);
-  
   pushMatrix();
   translate(50 + x, 50 + y);
-  
-  shape(drawing, 0,0);
-  
-  popMatrix();
+
+  stroke(lineColor);
+  strokeWeight(strokeWidth);
+
+}
+
+void keyPressed () {
+  if (key == ' ') {
+    jitter = random (2, 30);
+    speed= random (1, 10);
+    strokeWidth = random (1, 8);
+    lineColor = color (
+      random(255),
+      random(255),
+      random(255)
+      );
+
+    shake = true;
+  }
 }
